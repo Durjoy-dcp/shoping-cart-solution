@@ -12,6 +12,24 @@ function interactiveNumber(inputId, UpOrDown) {
     inputField.value = inputFieldInt;
     return inputFieldInt;
 }
+
+function showingTotalPrice() {
+    let subprice = 0;
+    const prices = document.getElementsByClassName('prices');
+    for (price of prices) {
+        subprice += parseInt(price.innerText);
+    }
+    // return subprice;
+    let tex = parseFloat((subprice * .1).toFixed(2));
+    // return tex;
+    let totalPrice = subprice + tex;
+    document.getElementById('sub-price').innerText = subprice;
+    document.getElementById('tex-price').innerText = tex;
+    document.getElementById('total-price').innerText = totalPrice;
+
+
+}
+
 function interactivePrice(inputId, price) {
     document.getElementById(inputId).innerText = price;
 }
@@ -20,6 +38,7 @@ function domEventListener(inputId, inputField, price, priceShow, UpOrDown) {
     document.getElementById(inputId).addEventListener('click', function () {
         let howMany = interactiveNumber(inputField, UpOrDown);
         interactivePrice(priceShow, howMany * price);
+        showingTotalPrice();
 
     })
 }
